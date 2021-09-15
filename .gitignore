@@ -1,0 +1,38 @@
+.DS_Store
+
+## Swift Package Manager
+/.build
+/Packages
+Package.pins
+
+# Package.resolved should go in the .gitignore
+# https://forums.swift.org/t/package-resolved-should-go-in-the-gitignore/14699/11
+Package.resolved
+
+/*.xcodeproj
+.swiftpm
+
+## User settings
+xcuserdata/
+
+## Obj-C/Swift specific
+*.hmap
+
+## App packaging
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+## CocoaPods
+Pods/
+*.xcworkspace
+
+## fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
