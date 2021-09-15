@@ -22,7 +22,7 @@ pod 'DirTree'
 
 ## Author
 
-vitonzhangtt, zhangchong@p1.com
+vitonzhang, vitonzhang@gmail.com
 
 ## License
 
