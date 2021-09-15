@@ -3,7 +3,11 @@ use_frameworks! :linkage => :static
 platform :ios, '11.0'
 
 target 'DirTree_Example' do
+  ## For local development.
   pod 'DirTree', :path => '../'
+  
+  ## For testing before publish to others.
+  # pod 'DirTree', :git => 'https://github.com/vitonzhangtt/DirTree.git'
 
   target 'DirTree_Tests' do
     inherit! :search_paths

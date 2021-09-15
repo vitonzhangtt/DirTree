@@ -6,7 +6,7 @@ PODS:
   - Quick (2.2.1)
 
 DEPENDENCIES:
-  - DirTree (from `../`)
+  - DirTree (from `https://github.com/vitonzhangtt/DirTree.git`)
   - Nimble (~> 8.0.7)
   - Quick (~> 2.2.0)
 
@@ -18,14 +18,19 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   DirTree:
-    :path: "../"
+    :git: https://github.com/vitonzhangtt/DirTree.git
+
+CHECKOUT OPTIONS:
+  DirTree:
+    :commit: 4e0595749f68babdde572fe1acb32979aebbbc6b
+    :git: https://github.com/vitonzhangtt/DirTree.git
 
 SPEC CHECKSUMS:
-  DirTree: 963ef329d413a690d3e1dbd62a1a47e933bf222d
+  DirTree: 55769854e2ee4c108d13183bda63fc0d97b9099a
   Files: 5a3161f7ce36fad76975d3d20a7669cf81f8d364
   Nimble: 98b888285a615fd34f20e61753cf58ea1402bde4
   Quick: f5754d69b7013f5864c29aab9ae6f0c79c5bc200
 
-PODFILE CHECKSUM: f9b83586c863de6914b26eadc4bd3c61aa4bf740
+PODFILE CHECKSUM: 9cf55312903f25a8c7ccabee47b234335eab387b
 
 COCOAPODS: 1.10.1
