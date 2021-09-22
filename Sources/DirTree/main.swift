@@ -23,22 +23,34 @@ struct Tree: ParsableCommand {
         print("Path: \(targetPath) Level: \(levelLimit)")
         
         let fileManager: FileManager = FileManager.default
-        let size: UInt64 = fileManager.sizeInByte(targetPath)
+//        let size: UInt64 = fileManager.sizeInByte(targetPath)
         
-        print("Path: \(targetPath) sizeInByte: \(size)")
+//        print("Path: \(targetPath) sizeInByte: \(size)")
         
-        let fileTreeSize = fileManager.treeSizeInByte(targetPath)
-        print("fileTreeSize: \(fileTreeSize)")
+//        let fileTreeSize = fileManager.treeSizeInByte(targetPath)
+//        print("fileTreeSize: \(fileTreeSize)")
         
         let timesA = String(repeating: "A", count: 5)
         print("timesA: \(timesA)")
         
-//        let dirTree: DirTree = DirTree(levelLimit, targetPath:targetPath)
-//        dirTree.construct()
-//        dirTree.calculate()
-//        dirTree.printDirTree()
+        let entry = DirTreeEntry(targetPath, limit: 5, logPath: nil)
+        entry.printDirTree()
         
-        print("STOP !")
+/*
+        
+        /// Deep enumeration
+        let enumerator = FileManager.default.enumerator(atPath: targetPath)
+        if let realEnumerator = enumerator {
+            while let file = realEnumerator.nextObject() as? String {
+                print("Filename: \(file)")
+            }
+        }
+*/
+        /// Shallow search
+//        let contents = try? fileManager.contentsOfDirectory(atPath: targetPath)
+//        let names = contents?.sorted() ?? []
+//        print("names: ")
+//        print("\(names)")
         
     }
 }
@@ -58,22 +70,6 @@ func pointerOperation() {
     
     print("i: \(i)")
 }
-
-func pointerOperation2() {
-    
-    /*
-     
-    let int: Int = 5
-    let p: UnsafeMutablePointer<Int> = UnsafeMutablePointer<Int>.allocate(capacity: 1)
-    defer {
-        p.deallocate()
-    }
-    p.pointee = int
-    print("p.pointee \(p.pointee)")
-     
-     */
-}
-
 
 // Tree.main()
 

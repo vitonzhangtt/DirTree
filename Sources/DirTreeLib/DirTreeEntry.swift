@@ -7,14 +7,16 @@
 
 import Foundation
 
-public class DirTreeEntry {
+@objc
+public class DirTreeEntry: NSObject {
     
     let targetPath: String
     let limit: Int
     let configuration: Configuration
     let logger: DirTreeLogging?
     
-    public init(_ targetPath: String, limit: Int, logPath: String? = nil) {
+    @objc
+    public init(targetPath: String, limit: Int, logPath: String? = nil) {
         self.targetPath = targetPath
         self.limit = limit
         self.configuration = Configuration(logPath)
@@ -25,6 +27,7 @@ public class DirTreeEntry {
         }
     }
     
+    @objc
     public func printDirTree() {
         let dirTree: DirTree = DirTree(limit, targetPath:targetPath, logger: logger)
         dirTree.construct()

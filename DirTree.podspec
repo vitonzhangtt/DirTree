@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'DirTree'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'Print the information about each node in a certain directory(Swift version).'
 
 # This description is used to generate tags and improve search results.
@@ -35,6 +35,5 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '11.0'
   
   s.source_files = 'Sources/DirTreeLib/*.swift'
-  s.dependency 'Files', '4.0.0'
   
 end

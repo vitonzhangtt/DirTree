@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import Files
 
 enum FileType {
-    case folder(folder: Folder?)
-    case file(file: File?)
+    case folder(folder: Folder)
+    case file(file: File)
 }
 
 final class IndexNode: Devideble {
@@ -18,25 +17,34 @@ final class IndexNode: Devideble {
     var sizeInByte: UInt64
     var path: String
     var isFolder: Bool
-    var fileType: FileType
+    let fileType: FileType
     
     init(path: String) {
         self.path = path
         sizeInByte = 0
         isFolder = FileManager.default.isDirectory(path)
+        /*
         fileType = isFolder ? .folder(folder: try? Folder(path: path))
                             : .file(file: try? File(path: path))
+         */
+        fileType = isFolder ? .folder(folder: Folder(path: path))
+            : .file(file: File(path: path))
     }
     
     private func files() -> [String]? {
         var files: [String] = []
         if isFolder {
             if case let .folder(folder) = fileType {
-                if let realFolder = folder {
-                    realFolder.files.forEach { (file: File) in
-                        files.append(file.path)
-                    }
+                
+//                if let realFolder = folder {
+//                    realFolder.files.forEach { (file: File) in
+//                        files.append(file.path)
+//                    }
+//                }
+                folder.files.forEach { (file: File) in
+                    files.append(file.path)
                 }
+                
             }
         }
         let result = files.isEmpty ? nil : files
@@ -49,20 +57,36 @@ final class IndexNode: Devideble {
         
         if isFolder {
             if case let .folder(folder) = fileType {
-                if let realFolder = folder {
-                    realFolder.subfolders.forEach { (folder: Folder) in
-                        subfolders.append(folder.path)
-                    }
+//                if let realFolder = folder {
+//                    realFolder.subfolders.forEach { (folder: Folder) in
+//                        subfolders.append(folder.path)
+//                    }
+//                }
+                folder.subFolders.forEach { (folder: Folder) in
+                    subfolders.append(folder.path)
                 }
             }
         }
+        
         let result = subfolders.isEmpty ? nil : subfolders
         return result
     }
     
     // MARK: - CustomStringConvertible
     public var description: String {
-        let description: String = "[\(sizeInByte)] \(shortName())"
+        
+        var sizeDescription: String = "\(sizeInByte) B"
+        if sizeInByte >= 1024 * 1024 {      // Megabytes
+            let sizeInMegabytes: Double = Double(sizeInByte) / (Double(1024) * Double(1024))
+            sizeDescription = String(format: "%.2f MB", sizeInMegabytes)
+        } else if sizeInByte >= 1024 {      // Kilobytes
+            let sizeInKilobytes: Double = Double(sizeInByte) / Double(1024)
+            sizeDescription = String(format: "%.2f KB", sizeInKilobytes)
+        } else {    // Bytes
+            // Do nothing!
+        }
+            
+        let description: String = "[\(sizeDescription)] \(shortName())"
         return description
     }
     
@@ -99,14 +123,17 @@ final class IndexNode: Devideble {
     public func shortName() -> String {
         switch fileType {
         case .file(let file):
-            if let realFile = file {
-                return realFile.name
-            }
+                
+            return file.name
+//            if let realFile = file {
+//                return realFile.name
+//            }
             
         case .folder(let folder):
-            if let realFolder = folder {
-                return realFolder.name
-            }
+            return folder.name
+//            if let realFolder = folder {
+//                return realFolder.name
+//            }
         }
         assert(false, "The file or folder is nil!")
         return ""
@@ -119,14 +146,17 @@ final class IndexNode: Devideble {
     public func fullName() -> String {
         switch fileType {
         case .file(let file):
-            if let realFile = file {
-                return realFile.path
-            }
+//            if let realFile = file {
+//                return realFile.path
+//            }
+            return file.path
         case .folder(let folder):
-            if let realFolder = folder {
-                return realFolder.path
-            }
+//            if let realFolder = folder {
+//                return realFolder.path
+//            }
+            return folder.path
         }
+        
         assert(false, "The file or folder is nil!")
         return ""
     }
@@ -139,15 +169,20 @@ final class IndexNode: Devideble {
     public func run() {
         switch fileType {
         case .file(let file):
-            if let realFile = file {
-                sizeInByte = FileManager.default.sizeInByte(realFile.path)
-                return
-            }
+//            if let realFile = file {
+//                sizeInByte = FileManager.default.sizeInByte(realFile.path)
+//                return
+//            }
+            sizeInByte = FileManager.default.sizeInByte(file.path)
+            return
+            
         case .folder(let folder):
-            if let realFolder = folder {
-                sizeInByte = FileManager.default.treeSizeInByte(realFolder.path)
-                return
-            }
+//            if let realFolder = folder {
+//                sizeInByte = FileManager.default.treeSizeInByte(realFolder.path)
+//                return
+//            }
+            sizeInByte = FileManager.default.treeSizeInByte(folder.path)
+            return
         }
         assert(false, "The file or folder is nil!")
     }

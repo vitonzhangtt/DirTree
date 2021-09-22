@@ -16,6 +16,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+/*
+        NSString *libraryPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
+        NSString *targetPath = [NSString stringWithFormat:@"%@/%@", libraryPath, @"Caches"];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        for (NSUInteger index = 0; index < 2000; index++) {
+            NSString *filePath = [NSString stringWithFormat:@"%@/%@.txt", targetPath, @(index)];
+            [fileManager createFileAtPath:filePath contents:nil attributes:nil];
+        }
+ */
+        /// Create the tmp files for testing.
+        let libraryPath: [String] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        
+        if libraryPath.count > 0 {
+            let firstLibraryPath = libraryPath[0]
+            let cachesPath: String = firstLibraryPath + "/Caches"
+            if FileManager.default.fileExists(atPath: cachesPath) {
+                print("Caches already exists!")
+            } else {
+                try? FileManager.default.createDirectory(atPath: cachesPath,
+                                                    withIntermediateDirectories: true,
+                                                    attributes: nil)
+                print("Caches directory be created!")
+            }
+            
+            for index in 0...2000 {
+                let fileName: String = "\(index).txt"
+                let filePath: String = "\(cachesPath)/\(fileName)"
+                
+//                print("filePath: \(filePath)")
+                FileManager.default.createFile(atPath: filePath, contents: nil, attributes: nil)
+            }
+        }
+        
         return true
     }
 

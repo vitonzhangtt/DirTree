@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Files
 
 // Extensions for FileManager.
 public extension FileManager {
@@ -37,6 +36,7 @@ public extension FileManager {
             }
         } catch {
             // Do nothing!!!
+            print("Error when get attributes of item: \(path)")
         }
         return type
     }
@@ -84,7 +84,7 @@ public extension FileManager {
      The files tree which contains directory itself, files and subdirectories.
      */
     func treeSizeInByte(_ directoryPath: String) -> UInt64 {
-        
+/*
         // Calculate the size of directory itself.
         var size: UInt64 = sizeInByte(directoryPath)
         let folder: Folder? = try? Folder(path: directoryPath)
@@ -101,6 +101,23 @@ public extension FileManager {
                 size = size + fileSize
             }
         }
+        return size
+*/
+        var size: UInt64 = sizeInByte(directoryPath)
+        let folder: Folder = Folder(path: directoryPath)
+        
+        // subfolders
+        folder.subFolders.forEach { (subfolder :Folder) in
+            let subfolderSize = treeSizeInByte(subfolder.path)
+            size = size + subfolderSize
+        }
+        
+        // files
+        folder.files.forEach { (file :File) in
+            let fileSize = sizeInByte(file.path)
+            size = size + fileSize
+        }
+        
         return size
     }
 }

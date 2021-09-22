@@ -211,10 +211,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = F6QSEMKSK2;
 						LastSwiftMigration = 1240;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = F6QSEMKSK2;
 						LastSwiftMigration = 1240;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -461,6 +463,7 @@
 			baseConfigurationReference = 94DDCA1B9E3729FA7BA28E9F /* Pods-DirTree_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = F6QSEMKSK2;
 				INFOPLIST_FILE = DirTree/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -476,6 +479,7 @@
 			baseConfigurationReference = 59DE06DAAD84C82445BAB451 /* Pods-DirTree_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = F6QSEMKSK2;
 				INFOPLIST_FILE = DirTree/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -490,6 +494,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3EDCD020A0F3FB5B59C8D54C /* Pods-DirTree_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = F6QSEMKSK2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -512,6 +517,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8E11859A27C80CB77D102FE9 /* Pods-DirTree_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = F6QSEMKSK2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",

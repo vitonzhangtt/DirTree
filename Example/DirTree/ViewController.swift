@@ -8,6 +8,7 @@
 
 import UIKit
 import DirTree
+import Files
 
 class ViewController: UIViewController {
 
@@ -24,12 +25,12 @@ class ViewController: UIViewController {
 
     // MARK: - Testing
     func dirTreePrintTest() {
-        let levelLimit: Int = 5
-        let targetPath: String = NSHomeDirectory()
-        print("targetPath: \(targetPath)")
-        let logPath: String = "\(NSTemporaryDirectory())/DirTree.txt"
+        let levelLimit: Int = 5        
+        let libraryPath: [String] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        let firstLibraryPath: String = libraryPath[0]
+        let targetPath: String = "\(firstLibraryPath)/Caches"
         
-        let entry = DirTreeEntry(targetPath, limit:levelLimit, logPath:logPath)
+        let entry = DirTreeEntry(targetPath, limit:levelLimit, logPath:nil)
         entry.printDirTree()
     }
 }
