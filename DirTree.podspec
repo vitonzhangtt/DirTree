@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'DirTree'
-  s.version          = '0.2.0'
+  s.version          = '0.2.2'
   s.summary          = 'Print the information about each node in a certain directory(Swift version).'
 
 # This description is used to generate tags and improve search results.
